@@ -1,0 +1,51 @@
+.algo {
+   padding: 10px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   background-color: rgba(15, 189, 224, 0.692);
+   box-shadow: 1px 10px 10px gray;
+}
+
+.algo-button {
+   font-size: 20px;
+   color: crimson;
+   font-weight: 600;
+   cursor: pointer;
+   text-align: center;
+   text-shadow: 1px 3px 3px rgba(240, 107, 133, 0.692);
+   transition: all 200ms ease-in-out;
+}
+
+.algo-button:hover {
+transform: scale(1.08);
+}
+
+.drop-down {
+   display: none;
+   flex-direction: column;
+   position: absolute;
+   top: 8%;
+   background-color: white;
+   width: max-content;
+   border-radius: 5px;
+   z-index: 2;
+   border: 1px solid rgba(128, 128, 128, 0.397);
+   transition: all 200ms ease-in-out;
+}
+
+.show {
+   display: flex;
+}
+
+.algo-option {
+   padding: 5px 15px;
+   font-weight: 600;
+   color: black;
+   cursor: pointer;
+   transition: all 200ms ease-in-out;
+}
+
+.algo-option:hover {
+   background-color: rgba(15, 189, 224, 0.692);
+}

@@ -1,0 +1,21 @@
+.background {
+   background-color: rgba(0, 0, 0, 0.644);
+   width: 100vw;
+   height: 100vh;
+   cursor: pointer;
+   display: flex;
+   justify-content: center;
+}
+
+.model {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-wrap: wrap;
+   width: 20%;
+   height: 10%;
+   position: relative;
+   top:100px;
+   padding: 10px;
+   background-color: white;
+}

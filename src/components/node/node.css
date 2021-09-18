@@ -1,0 +1,25 @@
+
+.node {
+   cursor: pointer;
+   width: 24px;
+   height: 20px;
+   padding: 2px;
+   border: 1px solid rgba(0, 0, 0, 0.37);
+   transition: all 0.2s ease-in-out;
+}
+.node-wall{
+   background-color: black;
+}
+.node-finish{
+   background-color: green;
+}
+.node-start{
+   background-color: red;
+}
+.node-visited{
+   background-color: rgb(240, 186, 204);
+}
+.node:hover{
+   background-color: cadetblue;
+   transform: scale(1.02);
+}

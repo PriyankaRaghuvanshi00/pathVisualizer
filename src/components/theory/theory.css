@@ -1,0 +1,34 @@
+.theory {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   padding: 10px;
+   align-items: center;
+}
+
+.title {
+   letter-spacing: 0.5px;
+   font-weight: 600;
+   color: crimson;
+   text-shadow: 1px 1px 1px rgb(240, 125, 148);
+}
+
+.defination {
+   letter-spacing: 0.5px;
+   word-spacing: 1px;
+   font-size: 20px;
+   font-weight: 500;
+   padding: 10px;
+}
+.links{
+   display:flex;
+   flex-direction: column;
+   flex-wrap: wrap;
+}
+.links a{
+   padding: 5px;
+}
+
+.links a:hover{
+   color: red;
+}
