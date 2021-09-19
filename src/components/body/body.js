@@ -1,42 +1,12 @@
 import "./body.css"
 import React, { useEffect, useState } from 'react'
 import Cell from "../node/node"
+import { setToInit, Node, getInitialGrid } from "./initialGridFunct";
+import { dijkstra, getNodesInShortestPathOrder } from "../../algorithms/dijkstra";
 var cnt = 0;
-export default function Body({ cleanPath, clearWalls, isSetNode, algo, speedVal, isWalls }) {
+export default function Body({ setStartVisualize, StartVisualize, setStartNodeRow, setFinishNodeRow, setFinishNodeCol, setStartNodeCol, StartNodeRow, StartNodeCol, FinishNodeRow, FinishNodeCol, Grid, setGrid, cleanPath, clearWalls, isSetNode, algo, speedVal, isWalls }) {
+   const [visitedNodesInOrder, setvisitedNodesInOrder] = useState([])
    var init_start_row = 4, init_start_col = 5, init_fin_row = 10, init_fin_col = 10;
-   const [StartNodeRow, setStartNodeRow] = useState(init_start_row)
-   const [StartNodeCol, setStartNodeCol] = useState(init_start_col)
-   const [FinishNodeRow, setFinishNodeRow] = useState(init_fin_row)
-   const [FinishNodeCol, setFinishNodeCol] = useState(init_fin_col)
-   function setToInit() {
-      setStartNodeCol(init_start_col)
-      setStartNodeRow(init_start_row)
-      setFinishNodeCol(init_fin_col)
-      setFinishNodeRow(init_fin_row)
-   }
-   const Node = (col, row) => {
-      return {
-         col,
-         row,
-         isStart: row === StartNodeRow && col === StartNodeCol,
-         isFinish: row === FinishNodeRow && col === FinishNodeCol,
-         distance: Infinity,
-         isVisited: false,
-         isWall: false,
-         previousNode: null,
-      };
-   };
-   const getInitialGrid = () => {
-      const grid = [];
-      for (let row = 0; row < 20; row++) {
-         const currentRow = [];
-         for (let col = 0; col < 30; col++) {
-            currentRow.push(Node(col, row));
-         }
-         grid.push(currentRow);
-      }
-      return grid;
-   };
    const onClickHandler = (row, col) => {
       if (isWalls) {
          const newGrid = Grid.slice();
@@ -83,17 +53,88 @@ export default function Body({ cleanPath, clearWalls, isSetNode, algo, speedVal,
          setGrid(newGrid);
       }
    }
-   const [Grid, setGrid] = useState(getInitialGrid())
+   function AnimateAlgorithm(visitedNodesInOrder, nodesInShortestPathOrder) {
+      for (let i = 0; i <= visitedNodesInOrder.length; i++) {
+         if (i === visitedNodesInOrder.length) {
+            setTimeout(() => {
+               AnimateShortestPath(nodesInShortestPathOrder);
+            }, 10 * i);
+            return;
+         }
+         const node = visitedNodesInOrder[i];
+
+         if ((node.row == StartNodeRow && node.col == StartNodeCol) || (node.row == FinishNodeRow && node.col == FinishNodeCol)) {
+         }
+         else {
+            setTimeout(() => {
+               document.getElementById(`node-${node.row}-${node.col}`).className =
+                  'node node-visited';
+            }, 10 * i);
+         }
+      }
+   }
+   function AnimateShortestPath(nodesInShortestPathOrder) {
+      nodesInShortestPathOrder.forEach(i => {
+         setTimeout(() => {
+            if ((i.row === StartNodeRow && i.col === StartNodeCol) || (i.row === FinishNodeRow && i.col === FinishNodeCol)) {
+               // nothing to do 
+            }
+            else {
+               document.getElementById(`node-${i.row}-${i.col}`).classList = "node node-shortes-path";
+            }
+         }, (50 * i))
+      });
+   }
+   function visualize() {
+      console.log(algo);
+      const grid = [...Grid];
+      const startNode = grid[StartNodeRow][StartNodeCol];
+      const finishNode = grid[FinishNodeRow][FinishNodeCol];
+      let visitedNodesInOrder, nodesInShortestPathOrder;
+      let flag = 0;
+      if (algo === "Dijkstra") {
+         visitedNodesInOrder = dijkstra(grid, startNode, finishNode);
+         nodesInShortestPathOrder = getNodesInShortestPathOrder(finishNode);
+         flag = 1;
+         setStartVisualize(false);
+      }
+      else if (algo === "A*") {
+         //for A*
+      }
+      else if (algo === "Prims") {
+         // for prims
+      }
+      else if (algo === "kruskal") {
+         // for krushkal
+      }
+      if (flag)
+         AnimateAlgorithm(visitedNodesInOrder, nodesInShortestPathOrder);
+   }
    useEffect(() => {
       if (clearWalls) {
-         setGrid(getInitialGrid())
+         setGrid(getInitialGrid(StartNodeRow, StartNodeCol, FinishNodeRow, FinishNodeCol))
       }
       else if (cleanPath) {
-         setToInit();
-         setGrid(getInitialGrid())
+         setToInit(init_fin_row, init_fin_col, init_start_row, init_start_col, setStartNodeCol, setStartNodeRow, setFinishNodeCol, setFinishNodeRow);
+         setGrid(getInitialGrid(StartNodeRow, StartNodeCol, FinishNodeRow, FinishNodeCol))
+         Grid.forEach(element => {
+            element.forEach(i => {
+               const className = i.isFinish
+                  ? 'node node-finish'
+                  : i.isStart
+                     ? 'node node-start'
+                     : i.isWall
+                        ? 'node node-wall'
+                        : 'node';
+               document.getElementById(`node-${i.row}-${i.col}`).classList = `${className}`;
+            });
+         });
       }
-   }, [clearWalls, cleanPath,StartNodeCol,StartNodeRow,FinishNodeCol,FinishNodeRow])
-   
+      else if (StartVisualize) {
+         { visualize(); }
+      }
+   }, [clearWalls, StartVisualize, cleanPath, StartNodeCol, StartNodeRow, FinishNodeCol, FinishNodeRow])
+
    return (
       <div className="body">
          {

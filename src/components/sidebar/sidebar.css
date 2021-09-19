@@ -99,3 +99,6 @@
       font-size: 15px;
    }
 }
+.disable{
+   display: none;
+}

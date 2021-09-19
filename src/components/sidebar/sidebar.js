@@ -1,8 +1,9 @@
 import React from 'react'
 import "./sidebar.css"
 import RefreshIcon from '@material-ui/icons/Refresh';
+import { dijkstra } from '../../algorithms/dijkstra';
 
-export default function SideBar({setclearWalls,setnode, Visualize, setVisualize, speedVal, setWalls, setspeedVal, cleanPath }) {
+export default function SideBar({StartVisualize,setStartVisualize,setclearWalls,setnode, Visualize, setVisualize, speedVal, setWalls, setspeedVal, cleanPath }) {
    const option = (name) => {
       if (name == "walls") {
          setWalls(false);
@@ -48,7 +49,7 @@ export default function SideBar({setclearWalls,setnode, Visualize, setVisualize,
             </div>
          </div>
          <div className="extra-options">
-         <div className="button" onClick={() => { setVisualize(true) }}>Visualize</div>
+         <div className="button" onClick={() => {setStartVisualize(true) }}>Visualize</div>
             <div className="cleaning-funct" onClick={() => { option("setWalls") }}>Set Walls</div>
             <div className="cleaning-funct" onClick={() => { option("nodes") }}>Set Nodes</div>
             <div className="cleaning-funct" onClick={() => { option("walls") }}>Clear Walls</div>

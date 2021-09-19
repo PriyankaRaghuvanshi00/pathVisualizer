@@ -17,8 +17,30 @@
    background-color: red;
 }
 .node-visited{
-   background-color: rgb(240, 186, 204);
+   animation-name: visited;
+  animation-duration: 4s;
+  background-color: rgb(243, 188, 206);
 }
+@keyframes visited {
+   from {   background-color: rgb(189, 189, 245);
+   }
+  to {
+   background-color: rgb(243, 188, 206);
+  }
+ }
+.node-shortes-path{
+   background-color: yellow;
+   animation-name: shortes-path;
+   animation-duration: 4s;
+}
+@keyframes shortes-path {
+   from {   background-color: rgb(241, 170, 15);
+   }
+  to {
+   background-color: yellow;
+  }
+ }
+
 .node:hover{
    background-color: cadetblue;
    transform: scale(1.02);

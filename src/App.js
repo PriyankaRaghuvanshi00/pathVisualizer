@@ -7,6 +7,7 @@ import React from 'react';
 import SideBar from './components/sidebar/sidebar';
 import { Route ,Switch} from 'react-router';
 import Theory from './components/theory/theory';
+import {getInitialGrid} from "./components/body/initialGridFunct";
 
 function App() {
   const [speedVal, setspeedVal] = useState(10)  //speed val
@@ -16,7 +17,13 @@ function App() {
   const [isWalls, setisWalls] = useState(false)
   const [isSetNode, setisSetNode] = useState(false)
   const [clearWalls, setclearWalls] = useState(false)
-
+  const [Grid, setGrid] = useState(getInitialGrid())
+  const [StartVisualize, setStartVisualize] = useState(false)
+  var init_start_row = 4, init_start_col = 5, init_fin_row = 10, init_fin_col = 10;
+  const [StartNodeRow, setStartNodeRow] = useState(init_start_row)
+  const [StartNodeCol, setStartNodeCol] = useState(init_start_col)
+  const [FinishNodeRow, setFinishNodeRow] = useState(init_fin_row)
+  const [FinishNodeCol, setFinishNodeCol] = useState(init_fin_col)
   useEffect(() => {
     console.log("AS", algo, cleanPath, clearWalls);
     if (algo === "") {
@@ -32,9 +39,9 @@ function App() {
      <Switch>
        <Route path="/theory" render={()=><Theory algo={algo}/>}/>
        <Route path="/" render={()=> <div className="app">
-        <SideBar clearWalls={clearWalls} setclearWalls={setclearWalls} setnode={setisSetNode} setWalls={setisWalls} speedVal={speedVal} setspeedVal={setspeedVal} cleanPath={setcleanPath}></SideBar>
+        <SideBar StartVisualize={StartVisualize} setStartVisualize={setStartVisualize}  clearWalls={clearWalls} setclearWalls={setclearWalls} setnode={setisSetNode} setWalls={setisWalls} speedVal={speedVal} setspeedVal={setspeedVal} cleanPath={setcleanPath}></SideBar>
         {
-          AllGood ? <Body cleanPath={cleanPath} clearWalls={clearWalls} isSetNode={isSetNode} algo={algo} speedVal={speedVal} isWalls={isWalls} ></Body> :
+          AllGood ? <Body setStartVisualize={setStartVisualize} StartVisualize={StartVisualize} setStartNodeCol={setStartNodeCol} StartNodeCol={StartNodeCol} FinishNodeRow={FinishNodeRow} setFinishNodeCol={setFinishNodeCol} FinishNodeCol={FinishNodeCol} setStartNodeRow={setStartNodeRow} StartNodeRow={StartNodeRow} setFinishNodeRow={setFinishNodeRow} Grid={Grid}  setGrid={setGrid}  cleanPath={cleanPath} clearWalls={clearWalls} isSetNode={isSetNode} algo={algo} speedVal={speedVal} isWalls={isWalls} ></Body> :
             <Model>Please Select An Algorithm First</Model>
         }
       </div>}>
