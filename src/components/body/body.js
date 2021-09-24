@@ -2,10 +2,13 @@ import "./body.css"
 import React, { useEffect, useState } from 'react'
 import Cell from "../node/node"
 import { setToInit, Node, getInitialGrid } from "./initialGridFunct";
-import { dijkstra, getNodesInShortestPathOrder } from "../../algorithms/dijkstra";
+import { getNodesInShortestPathOrder } from "../../algorithms/commonFunct"
+import { dijkstra } from "../../algorithms/dijkstra";
+import { depthFirstSearch } from "../../algorithms/dfs";
+import { breadthFirstSearch } from "../../algorithms/bfs";
+import { astar } from "../../algorithms/AStar";
 var cnt = 0;
-export default function Body({ setStartVisualize, StartVisualize, setStartNodeRow, setFinishNodeRow, setFinishNodeCol, setStartNodeCol, StartNodeRow, StartNodeCol, FinishNodeRow, FinishNodeCol, Grid, setGrid, cleanPath, clearWalls, isSetNode, algo, speedVal, isWalls }) {
-   const [visitedNodesInOrder, setvisitedNodesInOrder] = useState([])
+export default function Body({ RandomWalls, setStartVisualize, StartVisualize, setStartNodeRow, setFinishNodeRow, setFinishNodeCol, setStartNodeCol, StartNodeRow, StartNodeCol, FinishNodeRow, FinishNodeCol, Grid, setGrid, cleanPath, clearWalls, isSetNode, algo, speedVal, isWalls }) {
    var init_start_row = 4, init_start_col = 5, init_fin_row = 10, init_fin_col = 10;
    const onClickHandler = (row, col) => {
       if (isWalls) {
@@ -62,7 +65,6 @@ export default function Body({ setStartVisualize, StartVisualize, setStartNodeRo
             return;
          }
          const node = visitedNodesInOrder[i];
-
          if ((node.row == StartNodeRow && node.col == StartNodeCol) || (node.row == FinishNodeRow && node.col == FinishNodeCol)) {
          }
          else {
@@ -80,6 +82,7 @@ export default function Body({ setStartVisualize, StartVisualize, setStartNodeRo
                // nothing to do 
             }
             else {
+               console.log("node", i);
                document.getElementById(`node-${i.row}-${i.col}`).classList = "node node-shortes-path";
             }
          }, (50 * i))
@@ -94,25 +97,44 @@ export default function Body({ setStartVisualize, StartVisualize, setStartNodeRo
       let flag = 0;
       if (algo === "Dijkstra") {
          visitedNodesInOrder = dijkstra(grid, startNode, finishNode);
-         nodesInShortestPathOrder = getNodesInShortestPathOrder(finishNode);
          flag = 1;
          setStartVisualize(false);
       }
       else if (algo === "A*") {
-         //for A*
+         visitedNodesInOrder = astar(grid, startNode, finishNode);
+         flag = 1;
+
       }
-      else if (algo === "Prims") {
-         // for prims
+      else if (algo === "DFS") {
+         visitedNodesInOrder = depthFirstSearch(grid, startNode, finishNode);
+         flag = 1;
       }
-      else if (algo === "kruskal") {
-         // for krushkal
+      else if (algo === "BFS") {
+         visitedNodesInOrder = breadthFirstSearch(grid, startNode, finishNode);
+         flag = 1;
       }
+      nodesInShortestPathOrder = getNodesInShortestPathOrder(finishNode);
       if (flag)
          AnimateAlgorithm(visitedNodesInOrder, nodesInShortestPathOrder);
    }
    useEffect(() => {
       if (clearWalls) {
          setGrid(getInitialGrid(StartNodeRow, StartNodeCol, FinishNodeRow, FinishNodeCol))
+      }
+      else if (RandomWalls) {
+         let grid = getInitialGrid();
+         grid.forEach(row => {
+            row.forEach(elem => {
+               if (elem.row != 0 && elem.col != 0) {
+                  var mul = (elem.row * elem.col);
+                  if (elem.row%2 == 0 && elem.col%5==0) {
+                     elem.isWall = true;
+                  }
+               }
+            });
+         });
+         setGrid(grid);
+         console.log(Grid);
       }
       else if (cleanPath) {
          setToInit(init_fin_row, init_fin_col, init_start_row, init_start_col, setStartNodeCol, setStartNodeRow, setFinishNodeCol, setFinishNodeRow);
@@ -133,7 +155,7 @@ export default function Body({ setStartVisualize, StartVisualize, setStartNodeRo
       else if (StartVisualize) {
          { visualize(); }
       }
-   }, [clearWalls, StartVisualize, cleanPath, StartNodeCol, StartNodeRow, FinishNodeCol, FinishNodeRow])
+   }, [clearWalls, StartVisualize, RandomWalls, cleanPath, StartNodeCol, StartNodeRow, FinishNodeCol, FinishNodeRow])
 
    return (
       <div className="body">

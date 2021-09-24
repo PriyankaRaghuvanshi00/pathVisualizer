@@ -10,12 +10,12 @@ export const TheoryData = [
       links: []
    },
    {
-      name: 'Prims',
+      name: 'DFS',
       defination: 'sample',
       links: []
    },
    {
-      name: 'Kruskal',
+      name: 'BFS',
       defination: 'sample',
       links: []
    },

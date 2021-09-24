@@ -10,10 +10,10 @@ export default function Theory({ algo }) {
    else  if (algo === "A*") {
       d = TheoryData[1];
    }
-   else  if (algo === "Prims") {
+   else  if (algo === "DFS") {
       d = TheoryData[2];
    }
-   else  if (algo === "kruskal") {
+   else  if (algo === "BFS") {
       d = TheoryData[3];
    }
    return (

@@ -3,39 +3,58 @@ import "./sidebar.css"
 import RefreshIcon from '@material-ui/icons/Refresh';
 import { dijkstra } from '../../algorithms/dijkstra';
 
-export default function SideBar({StartVisualize,setStartVisualize,setclearWalls,setnode, Visualize, setVisualize, speedVal, setWalls, setspeedVal, cleanPath }) {
+export default function SideBar({ setshowModel, algo, RandomWalls, setRandomWalls, StartVisualize, setStartVisualize, setclearWalls, setnode, Visualize, setVisualize, speedVal, setWalls, setspeedVal, cleanPath }) {
    const option = (name) => {
       if (name == "walls") {
          setWalls(false);
          cleanPath(false);
          setclearWalls(true)
-         // setVisualize(false)
+         setStartVisualize(false)
+         setRandomWalls(false)
+
       }
       else if (name == "path") {
-         setWalls(false); 
+         setWalls(false);
          cleanPath(true);
-         // setVisualize(false)
+         setStartVisualize(false)
          setclearWalls(false)
          setnode(false)
+         setRandomWalls(false)
       }
       else if (name == "setWalls") {
-         setWalls(true); 
+         setWalls(true);
          cleanPath(false);
-         // setVisualize(false)
+         setStartVisualize(false)
          setnode(false)
          setclearWalls(false)
-
+         setRandomWalls(false)
       }
       else if (name == "nodes") {
          setWalls(false);
-          cleanPath(false);
-         // setVisualize(false)
+         cleanPath(false);
+         setStartVisualize(false)
          setnode(true)
          setclearWalls(false)
-
+         setRandomWalls(false)
       }
       else if (name == "reload") {
          window.location.reload();
+      }
+      else if (name === "randomWalls") {
+         setWalls(false);
+         cleanPath(false);
+         setStartVisualize(false)
+         setnode(true)
+         setclearWalls(false)
+         setRandomWalls(true)
+      }
+   }
+   function onVisualize() {
+      if (algo !== "") {
+         setStartVisualize(true);
+      }
+      else {
+         setshowModel(true);
       }
    }
    return (
@@ -49,13 +68,13 @@ export default function SideBar({StartVisualize,setStartVisualize,setclearWalls,
             </div>
          </div>
          <div className="extra-options">
-         <div className="button" onClick={() => {setStartVisualize(true) }}>Visualize</div>
+            <div className="button" onClick={() => { onVisualize() }}>Visualize</div>
             <div className="cleaning-funct" onClick={() => { option("setWalls") }}>Set Walls</div>
             <div className="cleaning-funct" onClick={() => { option("nodes") }}>Set Nodes</div>
             <div className="cleaning-funct" onClick={() => { option("walls") }}>Clear Walls</div>
+            <div className="cleaning-funct" onClick={() => { option("randomWalls") }}>Set Random Walls</div>
             <div className="cleaning-funct" onClick={() => { option("path") }}>Clear Path</div>
             <RefreshIcon className="cleaning-funct" onClick={() => { option("reload") }}></RefreshIcon>
-
          </div>
       </div>
    )

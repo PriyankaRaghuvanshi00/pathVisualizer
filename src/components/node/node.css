@@ -21,6 +21,7 @@
   animation-duration: 4s;
   background-color: rgb(243, 188, 206);
 }
+
 @keyframes visited {
    from {   background-color: rgb(189, 189, 245);
    }
@@ -28,11 +29,13 @@
    background-color: rgb(243, 188, 206);
   }
  }
+ 
 .node-shortes-path{
    background-color: yellow;
    animation-name: shortes-path;
    animation-duration: 4s;
 }
+
 @keyframes shortes-path {
    from {   background-color: rgb(241, 170, 15);
    }

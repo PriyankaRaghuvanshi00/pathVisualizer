@@ -4,7 +4,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { useHistory } from "react-router";
 
 export default function Header({ AllGood, setalgo }) {
-   const Algo = ["A*", "Dijkstra", "Prims", "kruskal"]
+   const Algo = ["A*", "Dijkstra", "DFS", "BFS"]
 let history=useHistory();
    return (
       <div className="algo">
@@ -14,14 +14,14 @@ let history=useHistory();
          </div> : null}
          {
             AllGood ?
-            <div className="algo-button" style={{marginRight:"10px"}} onClick={()=>{history.push("/")}}>
+            <div className="algo-button" style={{marginRight:"50px",backgroundColor:"rgba(0, 0, 0, 0.404)" , textShadow:"none"}} onClick={()=>{history.push("/")}}>
             Visualize
          </div>
           : null
          }
            {
             AllGood ?
-            <div className="algo-button" onClick={()=>{history.push("/theory")}}>
+            <div className="algo-button" style={{backgroundColor:"rgba(0, 0, 0, 0.404)" , textShadow:"none"}} onClick={()=>{history.push("/theory")}}>
             Theory
          </div>
           : null
