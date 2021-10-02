@@ -1,3 +1,14 @@
+:root {
+   --visited: rgb(248, 178, 201);
+   --visited1: rgb(157, 157, 248);
+   --visited2: rgb(253, 140, 178);
+   --shortesPath: rgb(255, 230, 0);
+   --shortesPath1: rgb(241, 99, 4);
+   --shortesPath2: rgb(255, 230, 0);
+   --finish: red;
+   --start: green;
+   --wall: black;
+}
 
 .node {
    cursor: pointer;
@@ -7,44 +18,56 @@
    border: 1px solid rgba(0, 0, 0, 0.37);
    transition: all 0.2s ease-in-out;
 }
-.node-wall{
-   background-color: black;
+
+.node-wall {
+   background-color: var(--wall);
 }
-.node-finish{
-   background-color: green;
+
+.node-finish {
+   background-color: var(--finish);
 }
-.node-start{
-   background-color: red;
+
+.node-start {
+   background-color: var(--start);
 }
-.node-visited{
+
+.node-visited {
    animation-name: visited;
-  animation-duration: 4s;
-  background-color: rgb(243, 188, 206);
+   animation-duration: 4s;
+   background-color: var(--visited);
+   /* background-color: rgb(236, 128, 164); */
+   /* background-color: rgb(243, 188, 206); */
 }
 
 @keyframes visited {
-   from {   background-color: rgb(189, 189, 245);
+   from {
+      /* background-color: #ffe603; */
+      /* background-color: rgb(143, 143, 245);  */
+      background-color: var(--visited1);
    }
-  to {
-   background-color: rgb(243, 188, 206);
-  }
- }
- 
-.node-shortes-path{
-   background-color: yellow;
+   to {
+      /* background-color:rgb(66, 64, 63); */
+      background-color: var(--visited2);
+      /* background-color: rgb(243, 188, 206);  */
+   }
+}
+
+.node-shortes-path {
+   background-color: var(--shortesPath);
    animation-name: shortes-path;
    animation-duration: 4s;
 }
 
 @keyframes shortes-path {
-   from {   background-color: rgb(241, 170, 15);
+   from {
+      background-color: var(--shortesPath1);
    }
-  to {
-   background-color: yellow;
-  }
- }
+   to {
+      background-color: var(--shortesPath2);
+   }
+}
 
-.node:hover{
+.node:hover {
    background-color: cadetblue;
    transform: scale(1.02);
 }

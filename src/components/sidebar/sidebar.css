@@ -4,11 +4,11 @@
    justify-content: flex-start;
    flex-direction: column;
    position: relative;
-   top: 100px;
+   top: 50px;
    height: max-content;
    margin: 10px;
    border-radius: 10px;
-   border: 1px solid rgba(128, 128, 128, 0.26);
+   border: 1px solid rgba(128, 128, 128, 0.582);
    box-shadow: -1px 10px 10px gray;
 }
 
@@ -86,7 +86,6 @@
       align-items: center;
       padding: 2px;
    }
-   
    .cleaning-funct {
       font-size: 15px;
       font-weight: 500;
@@ -99,6 +98,37 @@
       font-size: 15px;
    }
 }
-.disable{
+
+.disable {
    display: none;
+}
+
+.speed {
+   padding: 2px 20px;
+   word-wrap: break-word;
+   font-size: 15px;
+   font-weight: 600;
+   margin-top: 10px;
+   margin-right: 20px;
+   letter-spacing: 0.4px;
+}
+
+.tooltiptext {
+   background-color: black;
+   color: #fff;
+   display: none;
+   width: max-content;
+   text-align: center;
+   border-radius: 6px;
+   font-size: 9px;
+   letter-spacing: 1px;
+   padding: 5px 6px;
+   z-index: 1;
+   position: relative;
+   left: 28%;
+   top: -30px;
+}
+
+.tooltip:hover .tooltiptext {
+   visibility: visible;
 }

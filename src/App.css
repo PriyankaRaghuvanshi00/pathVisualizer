@@ -1,22 +1,136 @@
-*{
+* {
   margin: 0px;
   padding: 0px;
   font-family: Arial, Helvetica, sans-serif;
   overflow-x: hidden;
 }
 
-::-webkit-scrollbar{
+::-webkit-scrollbar {
   display: none;
 }
 
-.app{
+.app {
   display: flex;
-height: 100vh;
+  height: 100vh;
+}
+
+.hints {
+  z-index: 1;
+  /* display: none; */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 65px;
+  left: 50%;
+  border-radius: 10%;
+  background-color: white;
+  box-shadow: -1px 10px 10px grey;
+  padding: 5px 10px;
+  max-width: fit-content;
+  flex-wrap: wrap;
+  transition: all 200ms ease-in-out;
+  animation: animateparent 2s forwards;
+}
+
+.hints h1 {
+  font-size: 19px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 200ms ease-in-out;
+}
+
+.hints h1:hover {
+  color: blueviolet;
+  transform: scale(1.07);
+}
+
+.hints-info {
+  margin-top: 10px;
+  max-width: 400px;
+  animation: animate 2s forwards;
+}
+
+@keyframes animate {
+  from {
+    opacity: 0;
+    transform: rotateX(180deg);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.hints-info p {
+  display: flex;
+}
+
+.hints-block {
+  width: 15px;
+  margin-right: 5px;
+  background-color: black;
+  height: 15px;
+  margin-left: 5px;
+  box-shadow: -1px 2px 2px gray;
+}
+
+.hints-text {
+  display: flex;
+  margin-bottom: 5px;
+}
+
+.hints-text h2 {
+  font-weight: 600;
+  font-size: 14px;
+  margin-right: 5px;
+}
+
+.hints-text p {
+  font-size: 13px;
 }
 
 @media (max-width:760px) {
-  .app{
+  .app {
     flex-direction: column;
     height: max-content;
+  }
+  .hints {
+    top: 80px;
+    left: 5%;
+    padding: 1px 2px;
+  }
+  .hints h1 {
+    font-size: 12px;
+  }
+  .hints-info {
+    margin-bottom: 10px;
+    margin-top: 4px;
+    max-width: 300px;
+  }
+  .hints-info p {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    margin-top: 2px;
+  }
+  .hints-text {
+    display: flex;
+    margin-bottom: 4px;
+  }
+  .hints-text h2 {
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    margin-right: 5px;
+  }
+  .hints-text p {
+    /* border: 1px solid rebeccapurple; */
+    font-size: 10px;
+    letter-spacing: 0.6px;
+  }
+  .hints-block {
+    width: 10px;
+    height: 10px;
+    margin-left: 5px;
   }
 }

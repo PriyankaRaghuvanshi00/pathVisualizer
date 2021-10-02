@@ -10,13 +10,14 @@
 }
 
 .popUp {
+   z-index: 20;
    display: flex;
    flex-direction: column;
    justify-content: center;
    align-items: center;
    width: 100%;
    position: relative;
-   top: 30px;
+   top: 20%;
    padding-bottom: 20px;
    margin-bottom: 30px;
    animation: pop-up 1s ease forwards;

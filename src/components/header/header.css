@@ -8,7 +8,7 @@
 }
 
 .algo-button {
-   font-size: 20px;
+   font-size: 19px;
    color: crimson;
    font-weight: 600;
    cursor: pointer;
@@ -19,11 +19,21 @@
    padding: 5px 10px;
 }
 
+.double-line {
+   border-bottom: 2px solid black;
+   border-radius: 0px;
+}
+
 .algo-button:hover {
-transform: scale(1.08);
+   border-radius: 0px;
+   border-bottom: 1.4px solid black;
+   /* border-top: 1.4px solid black; */
+   text-decoration: double;
+   /* transform: scale(1.08); */
 }
 
 .drop-down {
+   z-index: 1000;
    display: none;
    flex-direction: column;
    position: absolute;

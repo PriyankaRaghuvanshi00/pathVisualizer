@@ -8,8 +8,9 @@ import { depthFirstSearch } from "../../algorithms/dfs";
 import { breadthFirstSearch } from "../../algorithms/bfs";
 import { astar } from "../../algorithms/AStar";
 var cnt = 0;
-export default function Body({ RandomWalls, setStartVisualize, StartVisualize, setStartNodeRow, setFinishNodeRow, setFinishNodeCol, setStartNodeCol, StartNodeRow, StartNodeCol, FinishNodeRow, FinishNodeCol, Grid, setGrid, cleanPath, clearWalls, isSetNode, algo, speedVal, isWalls }) {
+export default function Body({ stopVisualize, shortesPathSpeed, RandomWalls, setStartVisualize, StartVisualize, setStartNodeRow, setFinishNodeRow, setFinishNodeCol, setStartNodeCol, StartNodeRow, StartNodeCol, FinishNodeRow, FinishNodeCol, Grid, setGrid, cleanPath, clearWalls, isSetNode, algo, speedVal, isWalls }) {
    var init_start_row = 4, init_start_col = 5, init_fin_row = 10, init_fin_col = 10;
+   console.log(speedVal);
    const onClickHandler = (row, col) => {
       if (isWalls) {
          const newGrid = Grid.slice();
@@ -58,10 +59,13 @@ export default function Body({ RandomWalls, setStartVisualize, StartVisualize, s
    }
    function AnimateAlgorithm(visitedNodesInOrder, nodesInShortestPathOrder) {
       for (let i = 0; i <= visitedNodesInOrder.length; i++) {
+         if (stopVisualize) return;
+
          if (i === visitedNodesInOrder.length) {
             setTimeout(() => {
+
                AnimateShortestPath(nodesInShortestPathOrder);
-            }, 10 * i);
+            }, speedVal * 0.5 * i);
             return;
          }
          const node = visitedNodesInOrder[i];
@@ -69,23 +73,29 @@ export default function Body({ RandomWalls, setStartVisualize, StartVisualize, s
          }
          else {
             setTimeout(() => {
-               document.getElementById(`node-${node.row}-${node.col}`).className =
-                  'node node-visited';
-            }, 10 * i);
+               if (stopVisualize) return;
+               if (!StartVisualize)
+                  return;
+               if (document.getElementById(`node-${node.row}-${node.col}`))
+                  document.getElementById(`node-${node.row}-${node.col}`).className =
+                     'node node-visited';
+            }, speedVal * 0.5 * i);
          }
       }
    }
    function AnimateShortestPath(nodesInShortestPathOrder) {
-      nodesInShortestPathOrder.forEach(i => {
+      nodesInShortestPathOrder.forEach((i, ind) => {
          setTimeout(() => {
+            if (!StartVisualize)
+               return;
             if ((i.row === StartNodeRow && i.col === StartNodeCol) || (i.row === FinishNodeRow && i.col === FinishNodeCol)) {
                // nothing to do 
             }
             else {
-               console.log("node", i);
-               document.getElementById(`node-${i.row}-${i.col}`).classList = "node node-shortes-path";
+               if (document.getElementById(`node-${i.row}-${i.col}`))
+                  document.getElementById(`node-${i.row}-${i.col}`).classList = "node node-shortes-path";
             }
-         }, (50 * i))
+         }, (shortesPathSpeed * 0.5 * ind))
       });
    }
    function visualize() {
@@ -127,7 +137,7 @@ export default function Body({ RandomWalls, setStartVisualize, StartVisualize, s
             row.forEach(elem => {
                if (elem.row != 0 && elem.col != 0) {
                   var mul = (elem.row * elem.col);
-                  if (elem.row%2 == 0 && elem.col%5==0) {
+                  if (elem.row % 2 == 0 && elem.col % 5 == 0) {
                      elem.isWall = true;
                   }
                }
@@ -155,7 +165,7 @@ export default function Body({ RandomWalls, setStartVisualize, StartVisualize, s
       else if (StartVisualize) {
          { visualize(); }
       }
-   }, [clearWalls, StartVisualize, RandomWalls, cleanPath, StartNodeCol, StartNodeRow, FinishNodeCol, FinishNodeRow])
+   }, [clearWalls, stopVisualize, StartVisualize, RandomWalls, cleanPath, StartNodeCol, StartNodeRow, FinishNodeCol, FinishNodeRow, stopVisualize])
 
    return (
       <div className="body">
