@@ -6,6 +6,16 @@
    align-items: center;
 }
 
+.div {
+   justify-content: center;
+   align-items: center;
+   display: flex;
+}
+
+.div h2 {
+   font-size: 20px;
+}
+
 .title {
    letter-spacing: 0.5px;
    font-weight: 600;
@@ -14,21 +24,30 @@
 }
 
 .defination {
+   width: 50%;
    letter-spacing: 0.5px;
    word-spacing: 1px;
    font-size: 20px;
    font-weight: 500;
    padding: 10px;
 }
-.links{
-   display:flex;
+
+.links {
+   display: flex;
    flex-direction: column;
    flex-wrap: wrap;
 }
-.links a{
+
+.links a {
    padding: 5px;
 }
 
-.links a:hover{
+.links a:hover {
    color: red;
+}
+
+@media (max-width:760px) {
+   .defination {
+      width: 99%;
+   }
 }

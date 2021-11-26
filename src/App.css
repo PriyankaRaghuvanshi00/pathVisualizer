@@ -12,6 +12,7 @@
 .app {
   display: flex;
   height: 100vh;
+  overflow: hidden;
 }
 
 .hints {
@@ -56,6 +57,7 @@
     opacity: 0;
     transform: rotateX(180deg);
   }
+
   to {
     opacity: 1;
     transform: scale(1);
@@ -95,39 +97,47 @@
     flex-direction: column;
     height: max-content;
   }
+
   .hints {
     top: 80px;
     left: 5%;
     padding: 1px 2px;
   }
+
   .hints h1 {
     font-size: 12px;
   }
+
   .hints-info {
     margin-bottom: 10px;
     margin-top: 4px;
     max-width: 300px;
   }
+
   .hints-info p {
     font-size: 10px;
     font-weight: 600;
     letter-spacing: 0.2px;
     margin-top: 2px;
   }
+
   .hints-text {
     display: flex;
     margin-bottom: 4px;
   }
+
   .hints-text h2 {
     font-size: 12px;
     letter-spacing: 0.5px;
     margin-right: 5px;
   }
+
   .hints-text p {
     /* border: 1px solid rebeccapurple; */
     font-size: 10px;
     letter-spacing: 0.6px;
   }
+
   .hints-block {
     width: 10px;
     height: 10px;

@@ -4,7 +4,7 @@
    justify-content: flex-start;
    flex-direction: column;
    position: relative;
-   top: 50px;
+   top: 10px;
    height: max-content;
    margin: 10px;
    border-radius: 10px;
@@ -73,11 +73,14 @@
 }
 
 @media (max-width:760px) {
+
+
    .options {
       flex: 1;
       align-items: center;
       top: 10px;
    }
+
    .extra-options {
       display: flex;
       flex-direction: row;
@@ -86,11 +89,13 @@
       align-items: center;
       padding: 2px;
    }
+
    .cleaning-funct {
       font-size: 15px;
       font-weight: 500;
       letter-spacing: 0.4px;
    }
+
    .button {
       padding: 6px;
       font-weight: 500;
@@ -131,4 +136,10 @@
 
 .tooltip:hover .tooltiptext {
    visibility: visible;
+}
+
+@media (max-width:900px) {
+   .tooltiptext {
+      display: none;
+   }
 }

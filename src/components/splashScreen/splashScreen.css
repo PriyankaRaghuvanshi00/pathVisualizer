@@ -19,6 +19,7 @@
   animation-fill-mode: forwards;
   display: flex;
   flex-wrap: wrap;
+
 }
 
 .splashh {
@@ -37,27 +38,48 @@
 }
 
 .path {
-  text-shadow: -2px 4px 4px crimson;
+  /* text-shadow: -2px 4px 4px crimson; */
   left: 0rem;
   animation: wave 0.4s, jump 2.2s ease-in-out alternate 0.05s;
 }
 
 .finding {
-  text-shadow: -2px 4px 4px deepskyblue;
+  /* text-shadow: -2px 4px 4px deepskyblue; */
   left: 0.8rem;
   animation: wave 0.4s, jump 2.2s ease-in-out alternate 0.05s;
 }
 
 .viz {
-  text-shadow: -2px 4px 4px deeppink;
+  /* text-shadow: -2px 4px 4px deeppink; */
   left: 1.6rem;
   animation: wave 0.4s, jump 1.75s ease-in-out alternate 0.50s;
+}
+
+@media (max-width:760px) {
+  .splashhArea {
+    flex-direction: column;
+
+    /* font-size: 40px; */
+  }
+
+  .path {
+    top: 1vh !important;
+  }
+
+  .finding {
+    top: 2vh !important;
+  }
+
+  .viz {
+    top: 3vh !important;
+  }
 }
 
 @keyframes wave {
   0% {
     top: 0%;
   }
+
   100% {
     top: 100%;
   }
@@ -68,10 +90,12 @@
     transform: translate3d(0, 0, 0);
     opacity: 0;
   }
+
   90% {
     transform: translate3d(0, -16%, 0);
     opacity: 0.6;
   }
+
   100% {
     transform: translate3d(0, -32%, 0);
     opacity: 1;
@@ -84,6 +108,7 @@
     opacity: 1;
     visibility: visible;
   }
+
   100% {
     transform: translate3d(0, -100%, 0);
     opacity: 1;
@@ -96,6 +121,7 @@
     top: 21%;
     font-size: 50px;
   }
+
   span:nth-of-type(3) {
     left: 10px;
     top: -20%;

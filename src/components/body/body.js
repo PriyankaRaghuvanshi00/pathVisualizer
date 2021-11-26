@@ -8,8 +8,8 @@ import { depthFirstSearch } from "../../algorithms/dfs";
 import { breadthFirstSearch } from "../../algorithms/bfs";
 import { astar } from "../../algorithms/AStar";
 var cnt = 0;
-export default function Body({ stopVisualize, shortesPathSpeed, RandomWalls, setStartVisualize, StartVisualize, setStartNodeRow, setFinishNodeRow, setFinishNodeCol, setStartNodeCol, StartNodeRow, StartNodeCol, FinishNodeRow, FinishNodeCol, Grid, setGrid, cleanPath, clearWalls, isSetNode, algo, speedVal, isWalls }) {
-   var init_start_row = 4, init_start_col = 5, init_fin_row = 10, init_fin_col = 10;
+export default function Body({ timetaken, settimetaken, stopVisualize, shortesPathSpeed, RandomWalls, setStartVisualize, StartVisualize, setStartNodeRow, setFinishNodeRow, setFinishNodeCol, setStartNodeCol, StartNodeRow, StartNodeCol, FinishNodeRow, FinishNodeCol, Grid, setGrid, cleanPath, clearWalls, isSetNode, algo, speedVal, isWalls }) {
+   var init_start_row = 4, init_start_col = 5, init_fin_row = 10, init_fin_col = 5;
    console.log(speedVal);
    const onClickHandler = (row, col) => {
       if (isWalls) {
@@ -105,6 +105,9 @@ export default function Body({ stopVisualize, shortesPathSpeed, RandomWalls, set
       const finishNode = grid[FinishNodeRow][FinishNodeCol];
       let visitedNodesInOrder, nodesInShortestPathOrder;
       let flag = 0;
+      var time1 = new Date();
+      console.log(1, time1);
+      // settimetaken(time.getMilliseconds());
       if (algo === "Dijkstra") {
          visitedNodesInOrder = dijkstra(grid, startNode, finishNode);
          flag = 1;
@@ -124,8 +127,12 @@ export default function Body({ stopVisualize, shortesPathSpeed, RandomWalls, set
          flag = 1;
       }
       nodesInShortestPathOrder = getNodesInShortestPathOrder(finishNode);
-      if (flag)
+      if (flag) {
+         var time2 = new Date();
+         console.log(2, time2);
+         // settimetaken();
          AnimateAlgorithm(visitedNodesInOrder, nodesInShortestPathOrder);
+      }
    }
    useEffect(() => {
       if (clearWalls) {
