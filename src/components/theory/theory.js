@@ -23,11 +23,9 @@ export default function Theory({ algo }) {
       <h1 className="title">{algo[0].toUpperCase() + algo.slice(1) + '  Algorithm'}</h1>
       <p className="defination">{d?.defination}</p>
       <img src={d?.gif} alt={algo} width="250" />
-      <div className="links">
-         {
-            d?.links.map(i => <div className="div"><h2>{i.youtubeLink ? 'YOUTUBE LINK :' : null}</h2><a href={`i`}>{i.youtubeLink ? i.youtubeLink : null}</a></div>)
-         }
-      </div>
+      {
+         d?.links.map(i => <div className="div"><h2>{i.youtubeLink ? 'YOUTUBE LINK :' : null}</h2><a href={`i`}>{i.youtubeLink ? i.youtubeLink : null}</a></div>)
+      }
    </div> : <div style={{ marginTop: "50px", marginLeft: "50px" }}> PAGE NOT FOUND!  <span style={{ color: "green", cursor: "pointer" }} onClick={() => history.push("/")}>GO BACK</span> </div>;
 
 }

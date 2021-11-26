@@ -61,3 +61,18 @@
 .algo-option:hover {
    background-color: rgba(15, 189, 224, 0.692);
 }
+
+@media screen and (max-width:760px) {
+   .algo-button {
+      font-size: 18px;
+   }
+
+   .eye {
+      font-size: 18px;
+   }
+
+   .pen {
+      font-size: 18px !important;
+
+   }
+}

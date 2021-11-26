@@ -31,14 +31,14 @@ export default function Header({ AllGood, setalgo }) {
          {
             AllGood ?
                <div className={`algo-button ${location == '/' ? 'double-line' : ''}`} id="1" style={{ marginRight: "50px", textShadow: "none" }} onClick={() => { onHandler('/') }}>
-                  Visualize Algorithm <span>👁️‍🗨️</span>
+                  Visualize Algorithm <span className="eye">👁️‍🗨️</span>
                </div>
                : null
          }
          {
             AllGood ?
                <div className="algo-button" id="2" style={{ textShadow: "none" }} onClick={() => { onHandler('/theory') }}>
-                  Learn Algorithm <Pen style={{ color: 'black', position: 'relative', top: '3px' }} />
+                  Learn Algorithm <Pen className="pen" style={{ color: 'black', position: 'relative', top: '3px' }} />
                </div>
                : null
          }

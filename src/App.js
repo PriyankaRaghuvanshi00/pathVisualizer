@@ -23,7 +23,7 @@ function App() {
   const [clearWalls, setclearWalls] = useState(false)
   const [Grid, setGrid] = useState(getInitialGrid())
   const [StartVisualize, setStartVisualize] = useState(false)
-  var init_start_row = 4, init_start_col = 5, init_fin_row = 1, init_fin_col = 5;
+  var init_start_row = 4, init_start_col = 5, init_fin_row = 10, init_fin_col = 10;
   const [StartNodeRow, setStartNodeRow] = useState(init_start_row)
   const [StartNodeCol, setStartNodeCol] = useState(init_start_col)
   const [FinishNodeRow, setFinishNodeRow] = useState(init_fin_row)
@@ -59,7 +59,7 @@ function App() {
           <Route path="/theory" render={() => <Theory algo={algo} />} />
           <Route path="/" render={() => <div className="app">
             <SideBar setalgo={setalgo} setstopVisualize={setstopVisualize} shortesPathSpeed={shortesPathSpeed} setshortesPathSpeed={setshortesPathSpeed} setshowModel={setshowModel} algo={algo} RandomWalls={RandomWalls} setRandomWalls={setRandomWalls} StartVisualize={StartVisualize} setStartVisualize={setStartVisualize} clearWalls={clearWalls} setclearWalls={setclearWalls} setnode={setisSetNode} setWalls={setisWalls} speedVal={speedVal} setspeedVal={setspeedVal} cleanPath={setcleanPath}></SideBar>
-            <Body timetaken={timetaken} settimetaken={settimetaken} stopVisualize={stopVisualize} shortesPathSpeed={shortesPathSpeed} RandomWalls={RandomWalls} setStartVisualize={setStartVisualize} StartVisualize={StartVisualize} setStartNodeCol={setStartNodeCol} StartNodeCol={StartNodeCol} FinishNodeRow={FinishNodeRow} setFinishNodeCol={setFinishNodeCol} FinishNodeCol={FinishNodeCol} setStartNodeRow={setStartNodeRow} StartNodeRow={StartNodeRow} setFinishNodeRow={setFinishNodeRow} Grid={Grid} setGrid={setGrid} cleanPath={cleanPath} clearWalls={clearWalls} isSetNode={isSetNode} algo={algo} speedVal={speedVal} isWalls={isWalls} ></Body>
+            <Body setstopVisualize={setstopVisualize} timetaken={timetaken} settimetaken={settimetaken} stopVisualize={stopVisualize} shortesPathSpeed={shortesPathSpeed} RandomWalls={RandomWalls} setStartVisualize={setStartVisualize} StartVisualize={StartVisualize} setStartNodeCol={setStartNodeCol} StartNodeCol={StartNodeCol} FinishNodeRow={FinishNodeRow} setFinishNodeCol={setFinishNodeCol} FinishNodeCol={FinishNodeCol} setStartNodeRow={setStartNodeRow} StartNodeRow={StartNodeRow} setFinishNodeRow={setFinishNodeRow} Grid={Grid} setGrid={setGrid} cleanPath={cleanPath} clearWalls={clearWalls} isSetNode={isSetNode} algo={algo} speedVal={speedVal} isWalls={isWalls} ></Body>
             <Model show={showModel} handler={setshowModel}>Please Select  ALgorithm First</Model>
             <div id="hints" className="hints">
               <h1 onClick={() => { setshowHint(!showHint) }}><ExpandMoreIcon /> </h1>
@@ -97,7 +97,7 @@ function App() {
           </div>}>
           </Route>
         </Switch>
-      </React.Fragment>
+      </React.Fragment >
     </>
   );
 }

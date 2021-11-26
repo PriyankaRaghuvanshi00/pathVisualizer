@@ -8,9 +8,9 @@ import { depthFirstSearch } from "../../algorithms/dfs";
 import { breadthFirstSearch } from "../../algorithms/bfs";
 import { astar } from "../../algorithms/AStar";
 var cnt = 0;
-export default function Body({ timetaken, settimetaken, stopVisualize, shortesPathSpeed, RandomWalls, setStartVisualize, StartVisualize, setStartNodeRow, setFinishNodeRow, setFinishNodeCol, setStartNodeCol, StartNodeRow, StartNodeCol, FinishNodeRow, FinishNodeCol, Grid, setGrid, cleanPath, clearWalls, isSetNode, algo, speedVal, isWalls }) {
-   var init_start_row = 4, init_start_col = 5, init_fin_row = 10, init_fin_col = 5;
-   console.log(speedVal);
+export default function Body({ setstopVisualize, timetaken, settimetaken, stopVisualize, shortesPathSpeed, RandomWalls, setStartVisualize, StartVisualize, setStartNodeRow, setFinishNodeRow, setFinishNodeCol, setStartNodeCol, StartNodeRow, StartNodeCol, FinishNodeRow, FinishNodeCol, Grid, setGrid, cleanPath, clearWalls, isSetNode, algo, speedVal, isWalls }) {
+   var init_start_row = 4, init_start_col = 5, init_fin_row = 10, init_fin_col = 10;
+   // console.log(speedVal);
    const onClickHandler = (row, col) => {
       if (isWalls) {
          const newGrid = Grid.slice();
@@ -99,14 +99,14 @@ export default function Body({ timetaken, settimetaken, stopVisualize, shortesPa
       });
    }
    function visualize() {
-      console.log(algo);
+      // console.log(algo);
       const grid = [...Grid];
       const startNode = grid[StartNodeRow][StartNodeCol];
       const finishNode = grid[FinishNodeRow][FinishNodeCol];
       let visitedNodesInOrder, nodesInShortestPathOrder;
       let flag = 0;
       var time1 = new Date();
-      console.log(1, time1);
+      // console.log(1, time1);
       // settimetaken(time.getMilliseconds());
       if (algo === "Dijkstra") {
          visitedNodesInOrder = dijkstra(grid, startNode, finishNode);
@@ -129,7 +129,7 @@ export default function Body({ timetaken, settimetaken, stopVisualize, shortesPa
       nodesInShortestPathOrder = getNodesInShortestPathOrder(finishNode);
       if (flag) {
          var time2 = new Date();
-         console.log(2, time2);
+         // console.log(2, time2);
          // settimetaken();
          AnimateAlgorithm(visitedNodesInOrder, nodesInShortestPathOrder);
       }
@@ -151,7 +151,7 @@ export default function Body({ timetaken, settimetaken, stopVisualize, shortesPa
             });
          });
          setGrid(grid);
-         console.log(Grid);
+         // console.log(Grid);/
       }
       else if (cleanPath) {
          setToInit(init_fin_row, init_fin_col, init_start_row, init_start_col, setStartNodeCol, setStartNodeRow, setFinishNodeCol, setFinishNodeRow);
@@ -170,7 +170,10 @@ export default function Body({ timetaken, settimetaken, stopVisualize, shortesPa
          });
       }
       else if (StartVisualize) {
-         { visualize(); }
+         {
+            visualize();
+            setstopVisualize(true);
+         }
       }
    }, [clearWalls, stopVisualize, StartVisualize, RandomWalls, cleanPath, StartNodeCol, StartNodeRow, FinishNodeCol, FinishNodeRow, stopVisualize])
 

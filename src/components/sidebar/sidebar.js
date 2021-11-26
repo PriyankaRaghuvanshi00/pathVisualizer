@@ -57,6 +57,7 @@ export default function SideBar({ setalgo, setstopVisualize, shortesPathSpeed, s
          cleanPath(false);
          setnode(false)
          setclearWalls(false)
+         setstopVisualize(false)
          setRandomWalls(false)
          setStartVisualize(true);
       }
@@ -94,7 +95,7 @@ export default function SideBar({ setalgo, setstopVisualize, shortesPathSpeed, s
             <div className="cleaning-funct" style={{ display: 'flex' }} onClick={() => { option("walls") }}><div className="hints-block" style={{ marginTop: '2px', backgroundColor: 'black' }}></div>Clear Walls</div>
             {/* <div className="cleaning-funct" onClick={() => { option("randomWalls") }}>Set Random Walls</div> */}
             <div className="cleaning-funct" onClick={() => { option("path") }}>Clear Path </div>
-            <RefreshIcon className="cleaning-funct tooltip" onClick={() => { resetAlgo(); }} onMouseEnter={() => { window.innerWidth <= 900 ? console.log("ss") : document.getElementsByClassName("tooltiptext")[0].style.display = "flex"; }} onMouseLeave={() => { window.innerWidth <= 900 ? console.log("ss") : document.getElementsByClassName("tooltiptext")[0].style.display = "none"; }} />
+            <RefreshIcon className="cleaning-funct tooltip" onClick={() => { resetAlgo(); }} onMouseEnter={() => { window.innerWidth <= 900 ? console.log("") : document.getElementsByClassName("tooltiptext")[0].style.display = "flex"; }} onMouseLeave={() => { window.innerWidth <= 900 ? console.log("") : document.getElementsByClassName("tooltiptext")[0].style.display = "none"; }} />
             <div class="tooltiptext">Reset Algorithm</div>
          </div>
       </div>

@@ -32,9 +32,10 @@
    padding: 10px;
 }
 
-.links {
+.div {
+   margin-top: 20px;
+   width: 90%;
    display: flex;
-   flex-direction: column;
    flex-wrap: wrap;
 }
 
@@ -45,6 +46,7 @@
 .links a:hover {
    color: red;
 }
+
 
 @media (max-width:760px) {
    .defination {
